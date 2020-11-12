@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora con JavaScript</title>
+    <link type="text/css" href="Ejercicio6.css" rel="stylesheet">
+    <script src="Ejercicio6.js"></script>
+</head>
+
+<body onload="init();">
+    <main>
+        <h1>Calculadora Coordenadas</h1>
+        <section name="seccionEntrada" class="seccion">
+            <h2>Datos Entrada</h2>
+            <section name="seccionPunto1" class="point">
+                <h3>Origen</h3>
+                <div name="punto1" class="inline">
+                    <span>Latitud</span>
+                    <input id="lat1" type="text" />
+                    <span>Longitud</span>
+                    <input id="lon1" type="text" />
+                </div>
+            </section>
+            <section name="seccionPunto2" class="point">
+                <h3>Destino</h3>
+                <div name="punto1" class="inline">
+                    <span>Latitud</span>
+                    <input id="lat2" type="text" />
+                    <span>Longitud</span>
+                    <input id="lon2" type="text" />
+                </div>
+            </section>
+        </section>
+        <div>
+            <input type="button" onclick="calculadora.calcular()" value="Calcular Distancia" />
+        </div>
+        <section name="seccionSalida" class="seccion">
+            <h2>Datos Entrada</h2>
+            <section name="seccionResultado" class="result">
+                <h3>Resultado</h3>
+                <div name="resultadoKMS" class="inline">
+                    <span>Distancia</span>
+                    <input id="kms" type="text" />
+                    <span>Kilometros</span>
+                </div>
+                <div name="resultadoMILLAS" class="inline">
+                    <span>Distancia</span>
+                    <input id="millas" type="text" />
+                    <span>Millas</span>
+                </div>
+            </section>
+        </section>
+    </main>
+    <footer>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img  src="http://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" /></a>
+        </footer>
+</body>
