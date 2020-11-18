@@ -11,6 +11,7 @@ class Geolocalización {
             center: new google.maps.LatLng(-19.257753, 146.823688),
             zoom: 8,
         });
+
     }
 
     cargarKML() {
@@ -23,7 +24,6 @@ class Geolocalización {
           });
         kmlLayer.setMap(this.map);
     }
-
 }
 
 class MyFile {
