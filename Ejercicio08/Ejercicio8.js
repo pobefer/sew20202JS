@@ -5,11 +5,11 @@ function init() {
 }
 
 class Meteo {
-    apikey = "47b790fd0fc41878c80c57c9846132cb";
+    apikey = "35daabbf1d5529285740a6be7985280a";
     ciudad = ["Oviedo", "Langreo", "Santander"];
     unidades = "&units=metric";
     idioma = "&lang=es";
-    urlInicial = "http://api.openweathermap.org/data/2.5/weather?q=";
+    urlInicial = "https://api.openweathermap.org/data/2.5/weather?q=";
     urlFinal = this.unidades + this.idioma + "&APPID=" + this.apikey;
     error = "<h2>¡problemas! No puedo obtener información de <a href='http://openweathermap.org'>OpenWeatherMap</a></h2>";
     cargarMeteo(i) {
