@@ -11,7 +11,7 @@ class Meteo {
     idioma = "&lang=es";
     urlInicial = "https://api.openweathermap.org/data/2.5/weather?q=";
     urlFinal = this.unidades + this.idioma + "&APPID=" + this.apikey;
-    error = "<h2>¡problemas! No puedo obtener información de <a href='http://openweathermap.org'>OpenWeatherMap</a></h2>";
+    error = "<h2>¡problemas! No puedo obtener información de <a href='https://openweathermap.org'>OpenWeatherMap</a></h2>";
     cargarMeteo(i) {
         $.ajax({
             dataType: "json",
