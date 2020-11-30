@@ -1,66 +1,66 @@
 window.onload=function() {
-    canv=document.getElementById("gc");
-    ctx=canv.getContext("2d");
-    document.addEventListener("keydown",keyPush);
-    setInterval(game,1000/15);
+    canvs=document.getElementById("gc");
+    context=canvs.getContext("2d");
+    document.addEventListener("keydown",teclaPulsada);
+    setInterval(jugar,1000/15);
 }
-px=py=10;
-gs=tc=20;
-ax=ay=15;
-xv=yv=0;
-trail=[];
-tail = 5;
-function game() {
-    px+=xv;
-    py+=yv;
-    if(px<0) {
-        px= tc-1;
+snakeX=snakeY=10;
+gs=campo=20;
+enemyX=enemyY=15;
+speedX=speedY=0;
+snake=[];
+score = 5;
+function jugar() {
+    snakeX+=speedX;
+    snakeY+=speedY;
+    if(snakeX<0) {
+        snakeX= campo-1;
     }
-    if(px>tc-1) {
-        px= 0;
+    if(snakeX>campo-1) {
+        snakeX= 0;
     }
-    if(py<0) {
-        py= tc-1;
+    if(snakeY<0) {
+        snakeY= campo-1;
     }
-    if(py>tc-1) {
-        py= 0;
+    if(snakeY>campo-1) {
+        snakeY= 0;
     }
-    ctx.fillStyle="black";
-    ctx.fillRect(0,0,canv.width,canv.height);
+    context.fillStyle="black";
+    context.fillRect(0,0,canvs.width,canvs.height);
  
-    ctx.fillStyle="lime";
-    for(var i=0;i<trail.length;i++) {
-        ctx.fillRect(trail[i].x*gs,trail[i].y*gs,gs-2,gs-2);
-        if(trail[i].x==px && trail[i].y==py) {
-            tail = 5;
+    context.fillStyle="lime";
+    for(var i=0;i<snake.length;i++) {
+        context.fillRect(snake[i].x*gs,snake[i].y*gs,gs-2,gs-2);
+        if(snake[i].x==snakeX && snake[i].y==snakeY) {
+            score = 5;
         }
     }
-    trail.push({x:px,y:py});
-    while(trail.length>tail) {
-    trail.shift();
+    snake.push({x:snakeX,y:snakeY});
+    while(snake.length>score) {
+    snake.shift();
     }
  
-    if(ax==px && ay==py) {
-        tail++;
-        ax=Math.floor(Math.random()*tc);
-        ay=Math.floor(Math.random()*tc);
+    if(enemyX==snakeX && enemyY==snakeY) {
+        score++;
+        enemyX=Math.floor(Math.random()*campo);
+        enemyY=Math.floor(Math.random()*campo);
     }
-    ctx.fillStyle="red";
-    ctx.fillRect(ax*gs,ay*gs,gs-2,gs-2);
+    context.fillStyle="red";
+    context.fillRect(enemyX*gs,enemyY*gs,gs-2,gs-2);
 }
-function keyPush(evt) {
+function teclaPulsada(evt) {
     switch(evt.keyCode) {
         case 37:
-            xv=-1;yv=0;
+            speedX=-1;speedY=0;
             break;
         case 38:
-            xv=0;yv=-1;
+            speedX=0;speedY=-1;
             break;
         case 39:
-            xv=1;yv=0;
+            speedX=1;speedY=0;
             break;
         case 40:
-            xv=0;yv=1;
+            speedX=0;speedY=1;
             break;
     }
 }
