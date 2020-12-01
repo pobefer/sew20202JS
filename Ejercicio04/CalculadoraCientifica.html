@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>Calculadora con JavaScript</title>
 <link type="text/css" href="CalculadoraCientifica.css" rel="stylesheet">
+<script src="CalculadoraCientifica.js"></script>
 </head>
 <body onload="init();">
-    
+  <h2>Calculadora Cientifica</h2>
 <table class="calculadora">
-    <h2>Calculadora Cientifica</h2>
 <tr>
   <td colspan="6"><span id="resultado"></span></td>
 </tr>
@@ -59,10 +59,10 @@
   <td><button id="cero" onclick="calculadora.digito(0)">0</button></td>
   <td><button id="punto" onclick="calculadora.punto()">.</button></td>
   <td><button id="reset" onclick="calculadora.reset()">C</button></td>
-  <td><button id="calcular" onclick="calculadora.calc()">=</button></td>
+  <td><button id="calcular" onclick="calculadora.calcular()">=</button></td>
 </tr>
 </table>
-<script src="CalculadoraCientifica.js"></script>
+
 <footer>
     <a href="http://jigsaw.w3.org/css-validator/check/referer">
         <img style="border:0;width:88px;height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="¡CSS Válido!" /></a>

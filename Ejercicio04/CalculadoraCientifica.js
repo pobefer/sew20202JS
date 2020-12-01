@@ -1,8 +1,7 @@
 var calculadora;
 function init(){
-    calculadora = new CalculadoraBasica();
+    calculadora = new CalculadoraCientifica();
   }
-
 
   class CalculadoraBasica{
     memroiaAux ="";
@@ -57,9 +56,10 @@ function init(){
     reset(){
         resultado.textContent = "";
     }
-    calc(){
+    calcular(){
         try { 
             resultado.textContent = eval(resultado.textContent);
+            return resultado.textContent;
         }
         catch(err) {
             resultado.textContent = "Error = " + err;
@@ -67,3 +67,85 @@ function init(){
     }
 
   }
+
+  class CalculadoraCientifica extends CalculadoraBasica{
+    constructor() {
+        super();
+      }
+    
+      calc(f, a){
+        try { 
+            resultado.textContent = eval(f(a));
+        }
+        catch(err) {
+            resultado.textContent = "Error = " + err;
+        }
+    }
+
+      exp(){
+        resultado.textContent = resultado.textContent  + "**";
+      }
+
+      tenExp(){
+        resultado.textContent = resultado.textContent  + "10**";
+      }
+
+      log(){
+        this.calc(Math.log, this.calcular(resultado.textContent));
+      }
+
+      sin(){
+        this.calc(Math.sin, this.calcular(resultado.textContent));
+      }
+
+      cos(){
+        this.calc(Math.cos, this.calcular(resultado.textContent));
+      }
+
+      tan(){
+        this.calc(Math.tan, this.calcular(resultado.textContent));
+      }
+
+      expTen(){
+        resultado.textContent = resultado.textContent  + "10** ";
+      }
+
+      mod(){
+        resultado.textContent = resultado.textContent  + "%";
+      }
+
+      pi(){
+        resultado.textContent = resultado.textContent  + "3.1416 ";
+      }
+
+      e(){
+        resultado.textContent = resultado.textContent  + "2.71828 ";
+      }
+
+      square(){
+        resultado.textContent = resultado.textContent  + "**2";
+      }
+
+      sqrt(){
+          this.calc(Math.sqrt, this.calcular(resultado.textContent));
+      }
+
+      abs(){
+        this.calc(Math.abs, this.calcular(resultado.textContent));
+      }
+
+      inverse(){
+        this.calc(Math.inverse, this.calcular(resultado.textContent));
+      }
+
+      parentesisA(){
+        resultado.textContent = resultado.textContent  + "(";
+      }
+
+      parentesisC(){
+        resultado.textContent = resultado.textContent  + ")";
+      }
+  }
+
+
+  
