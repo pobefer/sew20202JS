@@ -2,7 +2,6 @@ var miPosicion;
 function init(visualizar) {
   miPosicion = new Geolocalización(visualizar);
 }
-"use strict";
 class Geolocalización {
   constructor(visualizar) {
     var parent = this;
@@ -16,12 +15,26 @@ class Geolocalización {
       parent.precisionAltitud = position.coords.altitudeAccuracy;
       parent.rumbo = position.coords.heading;
       parent.velocidad = position.coords.speed;
-      parent.verTodo(posicion, false);
-      parent.initMap();
+      parent.getMapaEstaticoGoogle(posicion, false);
     }
 
     function error(err) {
-      parent.verTodo(posicion, true, err);
+      var mensaje;
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          mensaje = "El usuario no permite la petición de geolocalización"
+          break;
+        case error.POSITION_UNAVAILABLE:
+          mensaje = "Información de geolocalización no disponible"
+          break;
+        case error.TIMEOUT:
+          mensaje = "La petición de geolocalización ha caducado"
+          break;
+        case error.UNKNOWN_ERROR:
+          mensaje = "Se ha producido un error desconocido"
+          break;
+      }
+      parent.getMapaEstaticoGoogle(posicion, true, mensaje);
     };
     var options = {
       enableHighAccuracy: true,
@@ -30,66 +43,31 @@ class Geolocalización {
     };
   }
 
-  verTodo(dondeVerlo, error, err = null) {
+
+
+  getMapaEstaticoGoogle(dondeVerlo, error, err = null) {
+
     var ubicacion = document.getElementById(dondeVerlo);
-    var datos = '';
     if (error) {
-      datos += '<p>ERROR(' + err.code + '): ' + err.message + '</p>';
+      ubicacion.innerHTML = '<p>' + err + '</p>';
     }
+
     else {
-      datos += '<p>Longitud: ' + this.longitud + ' grados</p>';
-      datos += '<p>Latitud: ' + this.latitud + ' grados</p>';
-      datos += '<p>Precisión de la latitud y longitud: ' + this.precision + ' metros</p>';
-      datos += '<p>Altitud: ' + this.altitude + ' metros</p>';
-      datos += '<p>Precisión de la altitud: ' + this.precisionAltitud + ' metros</p>';
-      datos += '<p>Rumbo: ' + this.rumbo + ' grados</p>';
-      datos += '<p>Velocidad: ' + this.velocidad + ' metros/segundo</p>';
-
+      var apiKey = "&key=AIzaSyDrTtZa5q81OrxubQF7iMcfmBFXnVq6MrY";
+      var url = "https://maps.googleapis.com/maps/api/staticmap?";
+      var centro = "center=" + this.latitud + "," + this.longitud;
+      var zoom = "&zoom=15";
+      var tamaño = "&size=800x600";
+      var marcador = "&markers=color:red%7Clabel:S%7C" + this.latitud + "," + this.longitud;
+      var sensor = "&sensor=false";
+      this.imagenMapa = url + centro + zoom + tamaño + marcador + sensor + apiKey;
+      ubicacion.innerHTML = "<img src='" + this.imagenMapa + "'/>";
     }
-    ubicacion.innerHTML = datos;
-  }
 
-  initMap() {
-    const pos = {
-      lat: this.latitud, lng: this.longitud 
-    };
-    const map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 8,
-      center: pos,
-    });
-    const infoWindow = new google.maps.InfoWindow();
-    const locationButton = document.createElement("button");
-    locationButton.textContent = "Pan to Current Location";
-    locationButton.classList.add("custom-map-control-button");
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
-    locationButton.addEventListener("click", () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent("You are here.");
-            infoWindow.open(map);
-            map.setCenter(pos);
-          },
-          () => {
-            handleLocationError(true, infoWindow, map.getCenter());
-          }
-        );
-      } else {
-        handleLocationError(false, infoWindow, map.getCenter());
-      }
-    });
-    //Mostramos el error en el centro, si no se mueve el mapa coincide con la posicion del usuario
-    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-      infoWindow.setPosition(pos);
-      infoWindow.setContent(
-        browserHasGeolocation
-          ? "Error: The Geolocation service failed."
-          : "Error: Your browser doesn't support geolocation."
-      );
-      infoWindow.open(map);
-    }
+   
   }
 
 }
+
+
 

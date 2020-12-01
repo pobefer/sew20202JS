@@ -2,7 +2,6 @@ var miPosicion;
 function init(visualizar) {
     miPosicion = new Geolocalización(visualizar);
 }
-"use strict";
 class Geolocalización {
     constructor(visualizar) {
         var parent = this;
@@ -20,7 +19,22 @@ class Geolocalización {
         }
 
         function error(err) {
-            parent.verTodo(posicion, true, err);
+            var mensaje;
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    mensaje = "El usuario no permite la petición de geolocalización"
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    mensaje = "Información de geolocalización no disponible"
+                    break;
+                case error.TIMEOUT:
+                    mensaje = "La petición de geolocalización ha caducado"
+                    break;
+                case error.UNKNOWN_ERROR:
+                    mensaje = "Se ha producido un error desconocido"
+                    break;
+                }
+            parent.verTodo(posicion, true, mensaje);
         };
         var options = {
             enableHighAccuracy: true,
@@ -33,7 +47,7 @@ class Geolocalización {
         var ubicacion = document.getElementById(dondeVerlo);
         var datos = '';
         if (error) {
-            datos += '<p>ERROR(' + err.code + '): ' + err.message + '</p>';
+            datos += '<p>' + err + '</p>';
         }
         else {
             datos += '<p>Longitud: ' + this.longitud + ' grados</p>';
@@ -47,7 +61,6 @@ class Geolocalización {
         }
         ubicacion.innerHTML = datos;
     }
-
 
 }
 

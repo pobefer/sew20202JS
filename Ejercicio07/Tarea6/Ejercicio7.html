@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Asignatura</title>
+    <link type="text/css" href="Ejercicio7.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="Ejercicio7.js"></script>
+</head>
+
+<body onload="init()">
+    <h1>TITULO 1</h1>
+    <section>
+        <h2>Titulo 2</h2>
+        <p>Esto es un párrafo.</p>
+        <pre>
+            public static int busquedaBinaria(int a[], int toSearch) {
+                //O(log(n))
+               int low = 0;
+               int high = a.length - 1;
+               int medio = 0;
+               while(high > low) {
+                   medio = (low + high) / 2;
+                   if( a[medio] == toSearch )
+                       return medio;
+                   else if( a[medio] > toSearch )
+                       high = medio - 1;
+                   else
+                       low = medio + 1;
+               }
+               return -1;
+            }
+        </pre>
+        <table>
+            <tr>
+                <th id="col1">Coimunidad</th>
+                <th id="col2">Ciudad</th>
+            </tr>
+            <tr>
+                <td id="c1" headers="col1">Asturias</td>
+                <td id="ciudad1" headers="col2">Oviedo</td>
+            </tr>
+            <tr>
+                <td id="c2" headers="col1">Gijon</td>
+                <td id="ciudad1" headers="col2">Oviedo</td>
+            </tr>
+            <tr>
+                <td id="c3" headers="col1">Aviles</td>
+                <td id="ciudad1" headers="col2">Oviedo</td>
+            </tr>
+        </table>
+        
+    </section>
+    <section>
+        <h2>Opciones</h2>
+        <div>
+            <button id="ocultar" onclick="opciones.ocultar()">Ocultar párrafos</button>
+            <button id="mostrar" onclick="opciones.mostrar()">Mostrar párrafos</button>
+        </div>
+    </section>
+    <footer>
+        <a href="http://validator.w3.org/check/referer" hreflang="en-us"> <img src="valid-html5-button.png"
+                alt="¡HTML5  válido!" height="31" width="88" /></a></footer>
+</body>
+
+</html>
