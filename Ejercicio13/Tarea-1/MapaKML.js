@@ -6,6 +6,7 @@ function init() {
 "use strict";
 class Geolocalización {
     myFile = new MyFile();
+    /*
     initMap() {
         this.map = new google.maps.Map(document.getElementById("map"), {
             center: new google.maps.LatLng(-19.257753, 146.823688),
@@ -24,6 +25,20 @@ class Geolocalización {
           });
         kmlLayer.setMap(this.map);
     }
+    */
+
+   initMap() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 11,
+      center: { lat: 43.876, lng: -5.624 },
+    });
+    const ctaLayer = new google.maps.KmlLayer({
+      src: "ruta.kml",
+      map: map,
+    });
+  }
+  
+  
 }
 
 class MyFile {
