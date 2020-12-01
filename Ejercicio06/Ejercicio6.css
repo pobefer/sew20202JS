@@ -19,3 +19,7 @@ img{
     width:88px;
     height:31px
   }
+
+  .inline , section{
+    padding: 1em;
+  }
