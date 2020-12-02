@@ -61,7 +61,7 @@ class Geolocalización {
       var marcador = "&markers=color:red%7Clabel:S%7C" + this.latitud + "," + this.longitud;
       var sensor = "&sensor=false";
       this.imagenMapa = url + centro + zoom + tamaño + marcador + sensor + apiKey;
-      ubicacion.innerHTML = "<img src='" + this.imagenMapa + "'/>";
+      ubicacion.innerHTML = "<img src='" + this.imagenMapa + "' alt='Mapa de Google no encontrado'/>";
     }
 
    
