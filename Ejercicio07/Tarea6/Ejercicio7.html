@@ -12,9 +12,18 @@
 <body onload="init()">
     <h1>TITULO 1</h1>
     <section>
-        <h2>Titulo 2</h2>
-        <p>Esto es un párrafo.</p>
-        <pre>
+        <h2 id="tipoBusquedaH">Codigo Secuencial</h2>
+        <p id="tipoBusquedaP">Busqueda Secuencial</p>
+        <pre id="SecuencialP">
+            public static int busquedaSecuencial(int a[], int toSearch) {
+                //O(n)
+              for(int i = a.length - 1; i>=0 - 1; i--)
+                  if(a[i] == toSearch)
+                      return i;
+              return -1;
+            }
+        </pre>
+        <pre id="binaryP">
             public static int busquedaBinaria(int a[], int toSearch) {
                 //O(log(n))
                int low = 0;
@@ -32,25 +41,27 @@
                return -1;
             }
         </pre>
+        <h2>Tabla</h2>
         <table>
             <tr>
-                <th id="col1">Coimunidad</th>
-                <th id="col2">Ciudad</th>
+                <th id="col1">Tipo Busqueda</th>
+                <th id="col2">Complejidad</th>
             </tr>
             <tr>
-                <td id="c1" headers="col1">Asturias</td>
-                <td id="ciudad1" headers="col2">Oviedo</td>
+                <td id="tipo1" headers="col1">Secuencial</td>
+                <td id="c1" headers="col2">O(n)</td>
             </tr>
             <tr>
-                <td id="c2" headers="col1">Gijon</td>
-                <td id="ciudad1" headers="col2">Oviedo</td>
-            </tr>
-            <tr>
-                <td id="c3" headers="col1">Aviles</td>
-                <td id="ciudad1" headers="col2">Oviedo</td>
+                <td id="tipo2" headers="col1">Binaria</td>
+                <td id="c2" headers="col2">O(log(n))</td>
             </tr>
         </table>
-        
+
+    </section>
+    <section>
+        <h2>Codigo</h2>
+        <label for="ta">Escribe tu codigo</label>
+        <textarea id="ta" rows="6" cols="50"></textarea>
     </section>
     <section>
         <h2>Opciones</h2>
@@ -58,6 +69,18 @@
             <button id="ocultar" onclick="opciones.ocultar()">Ocultar párrafos</button>
             <button id="mostrar" onclick="opciones.mostrar()">Mostrar párrafos</button>
         </div>
+        <div>
+            <button id="Secuencial" onclick="opciones.ocultar()">Busqueda Binaria</button>
+            <button id="binaria" onclick="opciones.mostrar()">Busqueda Secuencial</button>
+        </div>
+        <div>
+            <button id="crear" onclick="opciones.createElement()">Crear Elemento</button>
+            <button id="crear" onclick="opciones.deleteElement()">Eliminar Elemento</button>
+        </div>
+        <div>
+            <button id="crear" onclick="opciones.viewElements()">Ver elementos </button>
+        </div>
+        
     </section>
     <footer>
         <a href="http://validator.w3.org/check/referer" hreflang="en-us"> <img src="valid-html5-button.png"

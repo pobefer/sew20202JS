@@ -1,69 +1,59 @@
-var miPosicion;
-function init(visualizar) {
-    miPosicion = new Geolocalización(visualizar);
+
+
+var mapa;
+function initMap() {
+  mapa = new Geolocalización();
+  mapa.initMap();
+
 }
 "use strict";
 class Geolocalización {
-    constructor(visualizar) {
-        var parent = this;
-        var posicion = visualizar;
-        navigator.geolocation.getCurrentPosition(success, error, options);
-        function success(position) {
-            parent.longitud = position.coords.longitude;
-            parent.latitud = position.coords.latitude;
-            parent.precision = position.coords.accuracy;
-            parent.altitud = position.coords.altitude;
-            parent.precisionAltitud = position.coords.altitudeAccuracy;
-            parent.rumbo = position.coords.heading;
-            parent.velocidad = position.coords.speed;
-            parent.verTodo(posicion, false);
-        }
+  initMap() {
+    var parent = this;
+    navigator.geolocation.getCurrentPosition(function (pos) {
 
-        function error(err) {
-            parent.verTodo(posicion, true, err);
-        };
-        var options = {
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-          };
-    }
+      parent.lat = pos.coords.latitude;
+      parent.lon = pos.coords.longitude;
 
-    verTodo(dondeVerlo, error, err = null) {
-        var ubicacion = document.getElementById(dondeVerlo);
-        var datos = '';
-        if (error) {
-            datos += '<p>ERROR(' + err.code + '): ' + err.message + '</p>';
-        }
-        else {
-            datos += '<p>Longitud: ' + this.longitud + ' grados</p>';
-            datos += '<p>Latitud: ' + this.latitud + ' grados</p>';
-            datos += '<p>Precisión de la latitud y longitud: ' + this.precision + ' metros</p>';
-            datos += '<p>Altitud: ' + this.altitude + ' metros</p>';
-            datos += '<p>Precisión de la altitud: ' + this.precisionAltitud + ' metros</p>';
-            datos += '<p>Rumbo: ' + this.rumbo + ' grados</p>';
-            datos += '<p>Velocidad: ' + this.velocidad + ' metros/segundo</p>';
-            
-        }
-        ubicacion.innerHTML = datos;
-    }
+      parent.myLatlng = new google.maps.LatLng(parent.lat, parent.lon);
 
-    initMap() {
-        const myLatLng = { lat: -25.363, lng: 131.044 };
-      
-        const map = new google.maps.Map(
-          document.getElementById("map"),
-          {
-            zoom: 4,
-            center: myLatLng,
+      var mapOptions = {
+        center: parent.myLatlng,
+        zoom: 14,
+        mapTypeId: google.maps.MapTypeId.SATELLITE
+      };
+
+      parent.map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+
+      parent.infowindow = new google.maps.InfoWindow();
+
+      var request = {
+        location: parent.myLatlng,
+        radius: 5000,
+        types: ['cafe']
+      };
+
+      parent.service = new google.maps.places.PlacesService(parent.map);
+
+      parent.service.nearbySearch(request, function (results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            parent.crearMarcador(results[i]);
           }
-        );
-      
-        new google.maps.Marker({
-          position: myLatLng,
-          map,
-          title: "Hello World!",
-        });
-      }
-}
+        }
+      });
+    });
+  }
 
+  crearMarcador(place) {
+    var marker = new google.maps.Marker({
+      map: this.map,
+      position: place.geometry.location
+    });
+    var parent = this;
+    google.maps.event.addListener(marker, 'click', function () {
+      parent.infowindow.setContent(place.name);
+      parent.infowindow.open(this.map, this);
+    });
+  }
+}

@@ -1,66 +1,157 @@
-window.onload=function() {
-    canvs=document.getElementById("gc");
-    context=canvs.getContext("2d");
-    document.addEventListener("keydown",teclaPulsada);
-    setInterval(jugar,1000/15);
+var canvas;
+function init() {
+    canvas = new Canvas();
 }
-snakeX=snakeY=10;
-gs=campo=20;
-enemyX=enemyY=15;
-speedX=speedY=0;
-snake=[];
-score = 5;
-function jugar() {
-    snakeX+=speedX;
-    snakeY+=speedY;
-    if(snakeX<0) {
-        snakeX= campo-1;
+class Canvas {
+    //======================================================================
+    // VARIABLES
+    //======================================================================
+    constructor() {
+        this.miCanvas = document.querySelector('#pizarra');
+        this.lineas = [];
+        this.correccionX = 0;
+        this.correccionY = 0;
+        this.pintarLinea = false;
+        // Marca el nuevo punto
+        this.nuevaPosicionX = 0;
+        this.nuevaPosicionY = 0;
+
+        this.posicion = this.miCanvas.getBoundingClientRect()
+        this.correccionX = this.posicion.x;
+        this.correccionY = this.posicion.y;
+
+        this.miCanvas.width = 500;
+        this.miCanvas.height = 500;
+
+        //Color de la linea
+        this.color = '#fff';
+
+        // Eventos raton
+        this.miCanvas.addEventListener('mousedown', this.empezarDibujo, false);
+        this.miCanvas.addEventListener('mousemove', this.dibujarLinea, false);
+        this.miCanvas.addEventListener('mouseup', this.pararDibujar, false);
+
+        // Eventos pantallas táctiles
+        this.miCanvas.addEventListener('touchstart', this.empezarDibujo, false);
+        this.miCanvas.addEventListener('touchmove', this.dibujarLinea, false);
+
+        //FullScrean
+        document.addEventListener("keydown", function (e) {
+            if (e.keyCode == 13) {
+                canvas.toggleFullScreen();
+            }
+        }, false);
+
     }
-    if(snakeX>campo-1) {
-        snakeX= 0;
+
+    //======================================================================
+    // FUNCIONES
+    //======================================================================
+
+    audio() {
+        var stream = new Video('v.mp4');
+        var captions = stream.addTextTrack('captions', 'live captions', 'en-US');
+
+        // as caption cues come in, add them to the track for display
+        stream.addCue(new TextTrackCue('1', 0.783, 1.612, 'Mum, give me the butter.'));
+        stream.addCue(new TextTrackCue('2', 1.612, 2.691, 'I am waiting for the magic word!'));
     }
-    if(snakeY<0) {
-        snakeY= campo-1;
+
+    clear() {
+        canvas = new Canvas();
     }
-    if(snakeY>campo-1) {
-        snakeY= 0;
-    }
-    context.fillStyle="black";
-    context.fillRect(0,0,canvs.width,canvs.height);
- 
-    context.fillStyle="lime";
-    for(var i=0;i<snake.length;i++) {
-        context.fillRect(snake[i].x*gs,snake[i].y*gs,gs-2,gs-2);
-        if(snake[i].x==snakeX && snake[i].y==snakeY) {
-            score = 5;
+
+    toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
         }
     }
-    snake.push({x:snakeX,y:snakeY});
-    while(snake.length>score) {
-    snake.shift();
+
+    /**
+     * Funcion que empieza a dibujar la linea
+     */
+    empezarDibujo() {
+        canvas.pintarLinea = true;
+        canvas.lineas.push([]);
+    };
+
+    /**
+     * Funcion que guarda la posicion de la nueva línea
+     */
+    guardarLinea() {
+        canvas.lineas[canvas.lineas.length - 1].push({
+            x: canvas.nuevaPosicionX,
+            y: canvas.nuevaPosicionY
+        });
     }
- 
-    if(enemyX==snakeX && enemyY==snakeY) {
-        score++;
-        enemyX=Math.floor(Math.random()*campo);
-        enemyY=Math.floor(Math.random()*campo);
+
+    /**
+     * Funcion dibuja la linea
+     */
+    dibujarLinea(event) {
+        event.preventDefault();
+        if (canvas.pintarLinea) {
+            let ctx = canvas.miCanvas.getContext('2d')
+            // Estilos de linea
+            ctx.lineJoin = ctx.lineCap = 'round';
+            ctx.lineWidth = 10;
+            // Color de la linea
+            ctx.strokeStyle = canvas.color;
+            console.log(canvas.color)
+            // Marca el nuevo punto
+            if (event.changedTouches == undefined) {
+                // Versión ratón
+                canvas.nuevaPosicionX = event.layerX;
+                canvas.nuevaPosicionY = event.layerY;
+            } else {
+                // Versión touch, pantalla tactil
+                canvas.nuevaPosicionX = event.changedTouches[0].pageX - correccionX;
+                canvas.nuevaPosicionY = event.changedTouches[0].pageY - correccionY;
+            }
+            // Guarda la linea
+            canvas.guardarLinea();
+            // Redibuja todas las lineas guardadas
+            ctx.beginPath();
+            canvas.lineas.forEach(function (segmento) {
+                ctx.moveTo(segmento[0].x, segmento[0].y);
+                segmento.forEach(function (punto, index) {
+                    ctx.lineTo(punto.x, punto.y);
+                });
+            });
+            ctx.stroke();
+        }
     }
-    context.fillStyle="red";
-    context.fillRect(enemyX*gs,enemyY*gs,gs-2,gs-2);
+
+    /**
+     * Funcion que deja de dibujar la linea
+     */
+    pararDibujar() {
+        canvas.pintarLinea = false;
+        canvas.guardarLinea();
+    }
+
+    reproducePitido() {
+        let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+        let sourceNode = audioContext.createOscillator();
+        sourceNode.type = 'sine';
+        sourceNode.frequency.value = 261.6;
+        sourceNode.detune.value = 0;
+
+        //Connect the source to the speakers
+        sourceNode.connect(audioContext.destination);
+
+        //Make the sound audible for 100 ms
+        sourceNode.start();
+        window.setTimeout(function () { sourceNode.stop(); }, 100);
+    }
+
+
+
+
 }
-function teclaPulsada(evt) {
-    switch(evt.keyCode) {
-        case 37:
-            speedX=-1;speedY=0;
-            break;
-        case 38:
-            speedX=0;speedY=-1;
-            break;
-        case 39:
-            speedX=1;speedY=0;
-            break;
-        case 40:
-            speedX=0;speedY=1;
-            break;
-    }
-}
+
