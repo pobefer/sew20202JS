@@ -20,8 +20,8 @@ class Canvas {
         this.correccionX = this.posicion.x;
         this.correccionY = this.posicion.y;
 
-        this.miCanvas.width = 500;
-        this.miCanvas.height = 500;
+        this.miCanvas.width = 800;
+        this.miCanvas.height = 800;
 
         //Color de la linea
         this.color = '#fff';
