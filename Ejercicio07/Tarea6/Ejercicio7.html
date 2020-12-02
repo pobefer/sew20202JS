@@ -46,14 +46,18 @@
             <tr>
                 <th id="col1">Tipo Busqueda</th>
                 <th id="col2">Complejidad</th>
+                <th id="col3">Valoracion</th>
             </tr>
             <tr>
                 <td id="tipo1" headers="col1">Secuencial</td>
                 <td id="c1" headers="col2">O(n)</td>
+                <td id="a1" class="valor" headers="col3">5</td>
+
             </tr>
             <tr>
                 <td id="tipo2" headers="col1">Binaria</td>
                 <td id="c2" headers="col2">O(log(n))</td>
+                <td id="a2" class="valor" headers="col3">9</td>
             </tr>
         </table>
 
@@ -79,6 +83,10 @@
         </div>
         <div>
             <button id="view" onclick="opciones.viewElements()">Ver elementos </button>
+        </div>
+        <div>
+            <button id="valorar" onclick="opciones.sumarColumnas()">Sumar Columnas </button>
+            <p id="resultado_total">Suma: </p>
         </div>
         
     </section>
