@@ -7,3 +7,7 @@
     margin: 0;
     padding: 0;
     }
+
+    footer a img{
+        border:0;width:88px;height:31px
+      }
