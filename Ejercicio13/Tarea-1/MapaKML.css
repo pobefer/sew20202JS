@@ -7,6 +7,10 @@
     height: 100%;
     margin: 0;
     padding: 0;
+    font: 400 18px Tahoma, sans-serif; 
+  }
+  body {
+    font: 400 18px Tahoma, sans-serif; 
   }
 
   label{

@@ -1,3 +1,9 @@
+body {
+    font: 400 18px Tahoma, sans-serif; 
+    line-height: 1.5em;
+    background-color: floralwhite;
+  }
 label{
     padding: 1em;
 }
+p{padding: 3em;}
