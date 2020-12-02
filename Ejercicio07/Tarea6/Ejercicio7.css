@@ -1,6 +1,6 @@
 /*0,0,1*/
 body {
-    font: 400 15px Tahoma, sans-serif; 
+    font: 400 20px Tahoma, sans-serif; 
     line-height: 1.5em;
     background-color: floralwhite;
   }
@@ -28,7 +28,7 @@ body {
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
-  font: 300 15px Tahoma, sans-serif;
+  font: 300 20px Tahoma, sans-serif;
   }
   /*0,0,1*/
   th, td {
@@ -40,4 +40,14 @@ body {
 
   footer{
       padding: 2em;
+  }
+
+  button{
+    font-size: 1em;
+    margin: 1.2em;
+  }
+
+  label{
+    font-size: 1.5em;
+    padding: 0.5em;
   }
