@@ -11,7 +11,10 @@
 </head>
 <body onload="init()">
 <h1>Geolocalizacion</h1>
-<p><input id="subirArchivos" type="file" name="Archivos" onchange="a.cargarGeoJSON(this.files);"></p>
+<p>
+    <label for="subirArchivos">Cargar Archivos</label>
+    <input id="subirArchivos" type="file" name="Archivos" onchange="a.cargarGeoJSON(this.files);">
+</p>
 <div id="map"></div>
 <footer>
 <a href="http://jigsaw.w3.org/css-validator/check/referer">
