@@ -1,0 +1,18 @@
+canvas {
+    width: 800px;
+    height: 800px;
+    background-color: #000000;
+}
+
+.botones{
+    padding: 1em;
+}
+
+button{
+    margin: 2em;
+    font-size: 1.5em;
+}
+
+footer a img{
+    border:0;width:88px;height:31px
+  }

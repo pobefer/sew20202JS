@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rutas>
+    <RutaTuristica nombre="Ruta Asturias-Cantabria" tipo="Montañera-Costera" dificaultad="Alta" puntuacion="10" Agencia="Agencia 1">
+        <Duracion>
+            <fecha type-date="dd-mm-yy">01-01-20</fecha>
+            <hora type-hour="hh:mm">00:00</hora>
+            <tiempo unidad="hours">8</tiempo>
+        </Duracion>
+    </RutaTuristica>

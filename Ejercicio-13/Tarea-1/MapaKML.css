@@ -1,0 +1,19 @@
+#map {
+    height: 60%;
+    width: 60%;
+  }
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font: 400 18px Tahoma, sans-serif; 
+  }
+label{
+    padding: 1em;
+}
+p{padding: 3em;}
+
+footer a img{
+  border:0;width:88px;height:31px
+}

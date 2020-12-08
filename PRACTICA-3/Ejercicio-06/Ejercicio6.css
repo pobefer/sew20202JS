@@ -1,0 +1,29 @@
+/*011*/
+input[type=button]{
+    background-color:lightskyblue;
+    border: none;
+    color: white;
+    padding: 1em;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
+
+  body{
+    background-color:lightyellow;
+    color:black;
+}
+
+img{
+    border:0;
+    width:88px;
+    height:31px
+  }
+
+  .inline , section{
+    padding: 1em;
+  }
+
+  footer a img{
+    border:0;width:88px;height:31px
+  }

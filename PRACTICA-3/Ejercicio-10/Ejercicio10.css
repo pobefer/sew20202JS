@@ -1,0 +1,25 @@
+  /*0,0,1*/
+  table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font: 400 25px Tahoma, sans-serif;
+    }
+    /*0,0,1*/
+    th, td {
+      padding: 0.9375em;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      background-color:deepskyblue;
+    }
+
+    img{
+      border:0;
+      width:88px;
+      height:31px
+    }
+
+    footer a img{
+      border:0;width:88px;height:31px
+    }

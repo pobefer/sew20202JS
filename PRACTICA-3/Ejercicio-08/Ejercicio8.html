@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>jQuery-JSON-meteo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="Ejercicio8.js"></script>
+    <link rel="stylesheet" href="Ejercicio8.css" />
+</head>
+
+<body onload="init()">
+    <h1><a href="http://openweathermap.org/">OpenWeatherMap</a></h1>
+    <section>
+        <h2>DATOS METEOROLOGICOS</h2>
+        <table>
+            <tr>
+                <th>Ciudad</th>
+                <th>Tiempo</th>
+                <th>Temperatura</th>
+                <th>T. Maxima</th>
+                <th>T. Minima</th>
+                <th>Presion</th>
+                <th>Humedad</th>
+            </tr>
+            <tr>
+                <td id="ciudad1"></td>
+                <td>
+                    <img id="icon1" alt="No existe el icono" src="a.jpg">
+                </td>
+                <td id="temperatura1"></td>
+                <td id="maxT1"></td>
+                <td id="minT1"></td>
+                <td id="presion1"></td>
+                <td id="humedad1"></td>
+            </tr>
+            <tr>
+                <td id="ciudad2"></td>
+                <td>
+                    <img id="icon2" alt="No existe el icono" src="a.jpg">
+                </td>
+                <td id="temperatura2"></td>
+                <td id="maxT2"></td>
+                <td id="minT2"></td>
+                <td id="presion2"></td>
+                <td id="humedad2"></td>
+            </tr>
+            <tr>
+                <td id="ciudad3"></td>
+                <td>
+                    <img id="icon3" alt="No existe el icono" src="a.jpg">
+                </td>
+                <td id="temperatura3"></td>
+                <td id="maxT3"></td>
+                <td id="minT3"></td>
+                <td id="presion3"></td>
+                <td id="humedad3"></td>
+            </tr>
+        </table>
+    </section>
+    <footer>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+          <img src="http://jigsaw.w3.org/css-validator/images/vcss"
+            alt="¡CSS Válido!" /></a>
+      </footer>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+{
+	"rutas": [{
+			"name": "Ruta Asturias-Cantabria",
+			"coordenadas": {
+				"lat": 43.355796,
+				"lon": -5.856588
+			},
+			"hitos": [
+				{
+					"name": "Ciudad de Oviedo",
+					"coordenadas": {
+						"lat": 43.355890,
+						"lon": -5.856588
+					}
+				},
+				{
+					"name": "Veguin de Alla",
+					"coordenadas": {
+						"lat": 43.332426,
+						"lon": -5.769860
+					}
+				},
+				{
+					"name": "Riano",
+					"coordenadas": {
+						"lat": 42.996253,
+						"lon": -5.000480
+					}
+				}
+			]
+
+		},
+
+		{
+			"name": "Ruta por los Ancares",
+			"coordenadas": {
+				"lat": 43.352413,
+				"lon": -5.856367
+			},
+			"hitos": [
+				{
+					"name": "La Carbayeda",
+					"coordenadas": {
+						"lat": 43.379141,
+						"lon": -5.994459
+					}
+				},
+				{
+					"name": "Juan Bautista",
+					"coordenadas": {
+						"lat": 42.838917,
+						"lon": -6.764846
+					}
+				},
+				{
+					"name": "Puente la Regla",
+					"coordenadas": {
+						"lat": 43.138590,
+						"lon": -6.595581
+					}
+				}
+			]
+
+		},
+
+		{
+			"name": "Ruta Oviedo-Angliru",
+			"coordenadas": {
+				"lat": 43.354183,
+				"lon": -5.856657
+			},
+			"hitos": [
+				{
+					"name": "Urb. La Llera",
+					"coordenadas": {
+						"lat": 43.283794,
+						"lon": -5.868802
+					}
+				},
+				{
+					"name": "Alde Porcio",
+					"coordenadas": {
+						"lat": 43.243797,
+						"lon": -5.904293
+					}
+				},
+				{
+					"name": "Alto de L'Angliru",
+					"coordenadas": {
+						"lat": 43.221052,
+						"lon": -5.942080
+					}
+				}
+			]
+
+		}
+
+	]
+}
